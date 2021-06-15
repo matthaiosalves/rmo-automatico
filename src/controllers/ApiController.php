@@ -2,6 +2,7 @@
 namespace src\controllers;
 
 use \core\Controller;
+use \src\models\Moviment;
 
 class ApiController extends Controller {
 
@@ -16,10 +17,13 @@ class ApiController extends Controller {
     }
 
     public function apiBase(){
-        $api = ApiController::apiInfo();
-        foreach($api as $item){
-            echo $item['nome'];
+        $data = Moviment::select()->one();
+        $dataH = explode(':', $data['tempo_inicio']);
+        $dataAgora = $dataH[0].':'.$dataH[1];
+        echo $dataAgora;
 
-        }
+        
     }
+
+
 }

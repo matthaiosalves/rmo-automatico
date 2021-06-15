@@ -14,12 +14,12 @@ class RegistrosController extends Controller {
         foreach($users as $user){
             Registro::insert([
                 'nick'=>$user['nick'],
-                'entrada'=>$user['tempo_inicio'],
+                'entrada'=>$user['entrada'],
                 'saida'=>$hora,
                 'data'=>$date
             ])->execute();
         }
-
+        Moviment::update(['verificacao'=> 0])->execute();
         return $this->redirect('/');
     }
 

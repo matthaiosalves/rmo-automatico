@@ -101,6 +101,7 @@
 
       <nav class="navbar navbar-dark" style="background:#000;">
         <span style="float:right;color:#fff;"><b>Movimento de Oficiais</b></span>
+        <?=$resetar;?>
         <div id="tempo" style="display:none;float:right;">
           5 segundos... <img src="//habboemotion.com/resources/images/icons/furni_load.gif">
         </div>
@@ -121,9 +122,11 @@
        <form action="<?=$base;?>/rmo_finalizar" method="POST" class="form-inline">
          <input type="submit" id="finalBtn" class="btn btn-sm btn-secondary active" value="Finalizar RMO" name="user_rmo_finish" />
        </form>
+    <?php if($resetar < 1): ?>
 	   <form action="<?=$base;?>/rmo_resetar" method="POST" class="form-inline">
          <input type="submit" id="finalBtn" class="btn btn-sm btn-secondary active" value="Resetar RMO" onclick="return confirm('Você deseja apagar todos os registros? Antes de resetar, lembre-se de finalizar o RMO')" name="user_rmo_finish" />
        </form>
+    <?php endif; ?>
      </nav>
      <span style="margin:20px;"><b style="font-size:32px;">Oficial Controlando o Movimento de Oficiais</b><br></span>
      <span style="float:right;margin-right:20px;">
@@ -140,11 +143,28 @@
 			<div class="card-body">
 			<b class="card-title"><?=$list['nick'];?></b>
 
-			<small><p style="margin-bottom:0;"><span data-toggle="tooltip" data-placement="bottom "title="Há quanto Tempo com o RMO: 14:41"><u>Tempo com o RMO <?=$list['tempo_inicio'];?>.</u></span></small><br/>
-
-			<span data-toggle="tooltip" data-placement="bottom" title="Tempo com o RMO" class="badge badge-dark"><img src="https://www.habborator.org/archive/icons/mini/v20_6.gif">00:08</span></p></div>
-
-          </div></div>      </div>
+			<small>
+      <p style="margin-bottom:0;">
+          <span data-toggle="tooltip" data-placement="bottom "title="Há quanto Tempo com o RMO: 14:41">
+        <u>Tempo com o RMO <?=$list['tempo_inicio'];?>.</u>
+          </span>
+      </small>
+        <br/>
+			<span data-toggle="tooltip" data-placement="bottom" title="Tempo com o RMO" class="badge badge-dark">
+        <img src="https://www.habborator.org/archive/icons/mini/v20_6.gif">
+        <!-- <//?php parar por aqui pq tu ta ficando preguiçoso kkkk, isso ta salavando tudo no github?s
+          $tempo1 = ''.$list['tempo_inicio'].':00';
+          $tempo2 = date('H:i:s');
+  
+          $tempo = gmdate('H:i', abs( strtotime( $tempo1 ) - strtotime( $tempo2 ) ) );
+          echo $tempo;
+        ;?> -->
+      </span>
+      </p>
+      </div>
+      </div>
+      </div>
+      </div>
 		  <a href="<?=$base;?>/sair/<?=$list['id'];?>" class="btn btn-danger">Sair</a>
 		<?php endforeach; ?>
     </div>
@@ -161,57 +181,52 @@
 				<span class="badge tc1" style="background: url(<?=$ofc['link'];?>) center -20px no-repeat, url(https://1.bp.blogspot.com/-5cvesfmayj8/Vzb2Uv4hSbI/AAAAAAAAFCo/o-7lFCU8TSkCLUo7rIczg41zA_U4XY4yQCLcB/s1600/135217166.gif) center -0px no-repeat, 
         <?php if($ofc['status'] == 'Ausente'){
             echo '#FFC107';
+        }else{
+          echo '#366504';
         };?>;
 				">
 				<input type="text" name="nome_tc1_finalizou" value="<?=$ofc['nick'];?>" style="display:none;"></span>
 				<div class="card-body">
 				<b class="card-title"><?=$ofc['nick'];?></b>
 
-				<small><p style="margin-bottom:0;"><span data-toggle="tooltip" data-placement="bottom "title="Status Atual: Ativo"><u>Status: <?=$ofc['status'];?>.</u></span><br>
-        <p style="margin-bottom:0;"><span data-toggle="tooltip" data-placement="bottom "title="Horário que entrou no Status: 13:01">
-        <u>Entrou nesse status às 13:01.</u></span></small><br/>
+				<small>
+        <p style="margin-bottom:0;">
+        <span data-toggle="tooltip" data-placement="bottom "title="Status Atual: Ativo">
+        <u>Status: <?=$ofc['status'];?>.</u></span><br>
+        <p style="margin-bottom:0;"><span data-toggle="tooltip" data-placement="bottom "title="Horário que entrou no Status: <?=$horaStatus;?>">
+        <u>Entrou nesse status às <?php
+          $hora = $ofc['tempo_inicio'];
+          $horaH = explode(':', $hora);
+          $horaAgora = $horaH[0].':'.$horaH[1];
+          echo $horaAgora;
+        ?>.</u></span></small><br/>
 
-				<span data-toggle="tooltip" data-placement="bottom" title="Tempo online do oficial" class="badge badge-dark"><img src="https://www.habborator.org/archive/icons/mini/v20_6.gif"> 01:48</span></p></div>
+				<span data-toggle="tooltip" data-placement="bottom" title="Tempo online do oficial" class="badge badge-dark">
+          <img src="https://www.habborator.org/archive/icons/mini/v20_6.gif"> 01:48</span>
+        </p>
+        </div>
 
 				</div></div>
 				<div class="col-6" style="padding: 2px;">
 					<form action="<?=$base;?>/ativo/<?=$ofc['id'];?>" method="POST" style="display: inline-block;">
-						<input type="text" name="nick_rmo_ativo" value="Roy_War" style="display:none;">
-						<input type="text" name="id_rmo_ativo" value="13971" style="display:none;">
-						<button type="submit" class="btn btn-circle btn-xl" style="background:#5cb85c;color:white;">Ativo</button>
+						<button type="submit" class="btn btn-circle btn-xl" onclick="return alert('Oficial adicionado como ativo')" style="background:#5cb85c;color:white;">Ativo</button>
 					</form>
 					<form action="<?=$base;?>/aus/<?=$ofc['id'];?>" method="POST" style="display: inline-block;margin-left: 10%;">
-						<input type="text" name="nick_rmo_ausente" value="Roy_War" style="display:none;">
-						<input type="text" name="id_rmo_ausente" value="13971" style="display:none;">
-						<button type="submit" class="btn btn-circle btn-xl" style="background:#f0ad4e;color:white;text-align: center;">Aus</button>
+						<button type="submit" class="btn btn-circle btn-xl"onclick="return alert('Oficial marcado como ausente')" style="background:#f0ad4e;color:white;text-align: center;">Aus</button>
 					</form>
 					<form action="<?=$base;?>/remover/<?=$ofc['id'];?>" method="POST" style="display: inline-block;margin-left: 10%;">
-						<input type="text" name="nick_rmo_saiu" value="Roy_War" style="display:none;">
-						<input type="text" name="id_rmo_saiu" value="13971" style="display:none;">
-						<button type="submit" class="btn btn-circle btn-xl" style="background:#d9534f;color:white;">Saiu</button>
+						<button type="submit" class="btn btn-circle btn-xl" onclick="return alert('Oficial removido do RMO')" style="background:#d9534f;color:white;">Saiu</button>
 					</form> 
 				</div>
 			<?php endif; ?>
+        <script>
+          function seiLa(){
+            alert('teste');
 
+          }
+
+        </script>
 			<?php endforeach; ?>
-		
-        <!--  <div class="col-6" style="padding: 2px;">
-
-          <div class="card" style="width: 100%;">
-          <span class="badge tc1" style="background: url(https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=gif&amp;user=Matthaios&amp;direction=3&amp;head_direction=3&amp;gesture=sml&amp;size=m) center -20px no-repeat, url(https://1.bp.blogspot.com/-5cvesfmayj8/Vzb2Uv4hSbI/AAAAAAAAFCo/o-7lFCU8TSkCLUo7rIczg41zA_U4XY4yQCLcB/s1600/135217166.gif) center -0px no-repeat, #FFC107; 
-          ">
-          <input type="text" name="nome_tc1_finalizou" value="Matthaios" style="display:none;"></span>
-          <div class="card-body">
-          <b class="card-title">Matthaios</b>
-
-          <small><p style="margin-bottom:0;"><span data-toggle="tooltip" data-placement="bottom "title="Status Atual: Ausente"><u>Status: Ausente.</u></span><br><p style="margin-bottom:0;"><span data-toggle="tooltip" data-placement="bottom "title="Horário que entrou no Status: 14:47"><u>Entrou nesse status às 14:47.</u></span></small><br/>
-
-          <span data-toggle="tooltip" data-placement="bottom" title="Tempo online do oficial" class="badge badge-dark"><img src="https://www.habborator.org/archive/icons/mini/v20_6.gif"> 00:02</span></p></div>
-
-          </div></div>
-          <div class="col-6" style="padding: 2px;">
-          <form action="#" method="POST" style="display: inline-block;"><input type="text" name="nick_rmo_ativo" value="Matthaios" style="display:none;"><input type="text" name="id_rmo_ativo" value="13977" style="display:none;"><button type="submit" class="btn btn-circle btn-xl" style="background:#5cb85c;color:white;">Ativo</button></form><form action="#" method="POST" style="display: inline-block;margin-left: 10%;"><input type="text" name="nick_rmo_ausente" value="Matthaios" style="display:none;"><input type="text" name="id_rmo_ausente" value="13977" style="display:none;"><button type="submit" class="btn btn-circle btn-xl" style="background:#f0ad4e;color:white;text-align: center;">Aus</button></form><form action="#" method="POST" style="display: inline-block;margin-left: 10%;"><input type="text" name="nick_rmo_saiu" value="Matthaios" style="display:none;"><input type="text" name="id_rmo_saiu" value="13977" style="display:none;"><button type="submit" class="btn btn-circle btn-xl" style="background:#d9534f;color:white;">Saiu</button></form> 
-          </div>-->
     </div>
   </body>
   </html>
