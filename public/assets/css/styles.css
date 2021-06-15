@@ -1,0 +1,56 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #333;
+  justify-content: space-between;
+}
+
+.ofc-control {
+  background: url(https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=Divulgador-BR&direction=3&head_direction=3&size=m&action=std)
+    center -20px no-repeat;
+  height: 60px;
+  border-radius: 7px;
+  /*url(https://1.bp.blogspot.com/-5cvesfmayj8/Vzb2Uv4hSbI/AAAAAAAAFCo/o-7lFCU8TSkCLUo7rIczg41zA_U4XY4yQCLcB/s1600/135217166.gif) center -0px no-repeat, #366504;*/
+}
+.bar {
+  height: 2px;
+  background-color: #000;
+}
+.membros {
+  text-align: center;
+  width: 30px;
+  border: none;
+  border-bottom: 2px solid #396518;
+  background-color: #282828;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+}
+.ofc {
+  text-align: start;
+  border: none;
+  border-bottom: 2px solid #396518;
+  background-color: #282828;
+  outline: none;
+  color: #fff;
+  width: 70%;
+  font-size: 14px;
+  padding-left: 5px;
+}
+.periodos {
+  display: block;
+}
+#relatorioVespertino,
+#relatorioNoturno,
+#relatorioMatutino {
+  display: none;
+}
+
+footer {
+  background-color: #232323;
+  height: 20px;
+  display: none;
+}
