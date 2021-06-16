@@ -21,7 +21,7 @@ class RMOController extends Controller {
         'oficiais'=>$oficiais, 
         'horaStatus'=>$data, 
         'resetar'=>$resetar
-    ]);
+    ]);// Pega todas as informações e manda pro view
 
     }
     public function controle(){
