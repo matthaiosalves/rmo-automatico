@@ -70,6 +70,7 @@ class RMOController extends Controller {
         if($id){
             Control::delete()->where('id', $id)->execute();
             Moviment::update(['verificacao'=> 0, 'tempo_final'=>$hora])->where('nick', $nick['nick'])->execute();
+            $_SESSION['token'] = '';
             return $this->redirect('/');
         }
 
