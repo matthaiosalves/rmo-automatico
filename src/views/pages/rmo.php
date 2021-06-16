@@ -101,7 +101,6 @@
 
       <nav class="navbar navbar-dark" style="background:#000;">
         <span style="float:right;color:#fff;"><b>Movimento de Oficiais</b></span>
-        <?=$resetar;?>
         <div id="tempo" style="display:none;float:right;">
           5 segundos... <img src="//habboemotion.com/resources/images/icons/furni_load.gif">
         </div>

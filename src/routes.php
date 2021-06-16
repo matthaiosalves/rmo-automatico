@@ -25,3 +25,5 @@ $router->post('/aus/{id}', 'RMOController@aus');
 $router->post('/rmo_finalizar', 'RegistrosController@registrar');
 $router->post('/rmo_resetar', 'RegistrosController@resetar');
 
+$router->get('/rmo_painel', 'PainelController@index');
+
