@@ -145,19 +145,16 @@
 			<small>
       <p style="margin-bottom:0;">
           <span data-toggle="tooltip" data-placement="bottom "title="Há quanto Tempo com o RMO: 14:41">
-        <u>Tempo com o RMO <?=$list['tempo_inicio'];?>.</u>
+        <u>Tempo com o RMO  <?php  $hora = $list['tempo_inicio'];
+          $horaH = explode(':', $hora);
+          $horaAgora = $horaH[0].':'.$horaH[1];
+          echo $horaAgora; ?>.</u>
           </span>
       </small>
         <br/>
 			<span data-toggle="tooltip" data-placement="bottom" title="Tempo com o RMO" class="badge badge-dark">
         <img src="https://www.habborator.org/archive/icons/mini/v20_6.gif">
-        <!-- <//?php parar por aqui pq tu ta ficando preguiçoso kkkk, isso ta salavando tudo no github?s
-          $tempo1 = ''.$list['tempo_inicio'].':00';
-          $tempo2 = date('H:i:s');
-  
-          $tempo = gmdate('H:i', abs( strtotime( $tempo1 ) - strtotime( $tempo2 ) ) );
-          echo $tempo;
-        ;?> -->
+     
       </span>
       </p>
       </div>
