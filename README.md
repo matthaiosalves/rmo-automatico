@@ -1,5 +1,5 @@
 # mvc
- NÃO USA A TABELA DE USERS, SÓ MOVIMENTS, REGISTROS E CONTROL. BOA NOITE TE PEGO NA SAIDA DO RECREIO
+
  
  ## Instalação
 Você pode clonar este repositório OU baixar o .zip
